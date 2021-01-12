@@ -42,6 +42,33 @@
         }
 
     }
+
+    int partition(vector<int>& array, int begin, int end){
+        int pivot = end;
+        int counter = begin;
+        
+        // pivot: 标杆位置，counter: 小于pivot的元素的个数
+        for (int i=begin; i<end; i++) {
+            if (array[i] < array[pivot]) {
+                swap(array[i], array[counter]);
+                counter++;
+            }
+        }
+        swap(array[pivot], array[counter]);
+        return counter;
+    }
+    
+    void quickSort(vector<int>& array, int begin, int end) {
+        
+        if (end<=begin) {
+            return;
+        }
+        
+        int pivot = partition(array, begin, end);
+        
+        quickSort(array, begin, pivot-1);
+        quickSort(array, pivot+1, end);
+    }
     
     void merge(vector<int> array, int left, int mid, int right) {
         
